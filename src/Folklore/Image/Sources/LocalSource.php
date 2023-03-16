@@ -10,24 +10,25 @@ class LocalSource extends AbstractSource
 {
     public function getFullPath($path)
     {
-        $filesystem = app('files');
+        return app('files')->exists($path) ? $path : null;
+        // $filesystem = app('files');
 
-        //Get path
-        $dir = isset($this->config['path']) ? $this->config['path']:'';
+        // //Get path
+        // $dir = isset($this->config['path']) ? $this->config['path']:'';
 
-        // Check that directory exists
-        if (!$filesystem->isDirectory($dir)) {
-            return null;
-        }
+        // // Check that directory exists
+        // if (!$filesystem->isDirectory($dir)) {
+        //     return null;
+        // }
 
-        // Check if the path exists
-        $src = rtrim($dir, '/').'/'.ltrim($path, '/');
-        if ($filesystem->exists($src)) {
-            return $src;
-        }
+        // // Check if the path exists
+        // $src = rtrim($dir, '/').'/'.ltrim($path, '/');
+        // if ($filesystem->exists($src)) {
+        //     return $src;
+        // }
 
-        // None found
-        return null;
+        // // None found
+        // return null;
     }
 
     public function pathExists($path)
